@@ -4,6 +4,8 @@ from circleshape import *
 from constants import *
 from logger import log_state
 from player import *
+from asteroid import *
+from asteroidfield import *
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -20,8 +22,12 @@ def main():
     dt = 0.0
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
     Player.containers = (updateable, drawable)
+    Asteroid.containers = (updateable, drawable, asteroids)
+    AsteroidField.containers = (updateable)
     player = Player(x, y)
+    asteroidfield = AsteroidField()
 
     while True:
         log_state()
